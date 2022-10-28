@@ -1,0 +1,523 @@
+/**
+Theme Name: Medea MedSpace
+Author: Medea
+Author URI: https://www.medea.es
+Description: Plantilla WP para los cursos de Medea (hijo de tema Astra)
+Text Domain: medea-medspace
+Template: astra
+*/
+
+/* Hide when not logged in */
+body:not(.logged-in) .hide-for-logged-out {
+  display: none !important;
+}
+body.home section#areas-privadas {
+  padding: 100px 4%;
+}
+body #adduser label {
+  display: inline-block;
+  max-width: 12rem;
+  width: 100%;
+}
+body #edit-user {
+  margin: 4rem auto;
+  max-width: 1600px;
+  padding: 1rem;
+  width: 100%;
+}
+body #edit-user h1 {
+  margin-bottom: 2rem;
+}
+body #edit-user h3 {
+  margin-bottom: 1.5rem;
+}
+body #edit-user .gravatar img.avatar {
+  border-radius: 100%;
+  margin-bottom: 2rem;
+  width: 100px;
+}
+@media (min-width: 1600px) {
+  body #edit-user {
+    padding: 0;
+  }
+}
+body #group-main {
+  max-width: 1600px;
+}
+/* body #lesson-list .ribbon,
+body #lesson-list img {
+  display: none;
+} */
+body #login-form .elementor-login__logged-in-message {
+  display: none;
+}
+body #main-content #content {
+  display: grid;
+  column-gap: 4rem;
+  grid-template-columns: repeat(12, 1fr);
+}
+body #main-content #content .register-form {
+  grid-column-start: 1;
+  grid-column-end: 10;
+}
+body #main-content #content .login-form {
+  grid-column-start: 10;
+  grid-column-end: 13;
+  padding-top: 3rem;
+}
+body .uo-groups .uo-btn:hover,
+body .uo-groups .uo-btn.uo-btn--selected,
+body .uo-groups .uo-select:hover button,
+body .uo-groups .uo-checkbox:hover input ~ .uo-checkbox-checkmark,
+body .uo-groups .uo-checkbox input:checked ~ .uo-checkbox-checkmark,
+body .uo-groups .uo-radio:hover input ~ .uo-radio-checkmark,
+body .uo-groups .uo-radio input:checked ~ .uo-radio-checkmark,
+body .uo-groups.uo-quiz-report .buttons-csv:hover,
+body .uo-groups.uo-quiz-report a.paginate_button:hover,
+body .uo-groups.uo-quiz-report a.paginate_button.current,
+body .uo-groups-registration button:hover,
+body .uo-groups-registration button:focus,
+body .uo-groups-registration input[type='button']:hover,
+body .uo-groups-registration input[type='button']:focus,
+body .uo-groups-registration input[type='reset']:hover,
+body .uo-groups-registration input[type='reset']:focus,
+body .uo-groups-registration input[type='submit']:hover,
+body .uo-groups-registration input[type='submit']:focus,
+body
+  #uo-groups-buy-courses
+  .uo-groups-table
+  .uo-groups-table-cell.uo-groups-table-price
+  ins,
+body #uo-groups-buy-courses .uo-checkbox:hover input ~ .uo-checkmark,
+body #uo-groups-buy-courses .uo-checkbox input:checked ~ .uo-checkmark,
+body #uo-groups-buy-courses .uo-radio:hover input ~ .uo-checkmark,
+body #uo-groups-buy-courses .uo-radio input:checked ~ .uo-checkmark,
+body #uo-groups-buy-courses .uo-checkbox input ~ .uo-checkmark:after,
+body #uo-groups-buy--add-to-cart .uo-btn:hover,
+body .uo-ulgm-front .uo-admin-block .uo-admin-form-submit {
+  background: #2f2940;
+  color: white;
+}
+body .uo-groups .uo-groups-table .user_edit_link,
+body .uo-groups a:not(.button) {
+  color: #2f2940;
+}
+body .uo-groups .uo-select select.h3-select:hover {
+  color: #3961ab;
+}
+body .uo-groups .uo-select:hover select,
+body .uo-groups-select-filter .uo-select:hover,
+body .uo-groups .uo-select button:hover,
+body .uo-groups .uo-select select:hover {
+  background: white;
+  color: #3961ab;
+}
+body .uo-groups-datatable-header .dt-button {
+  letter-spacing: normal;
+}
+body .uo-groups .dataTables_filter input {
+  background: white !important;
+}
+body #uncanny_group_signup_registration_form {
+  width: 100%;
+}
+body #uncanny_group_signup_registration_form input {
+  background: white;
+  border: 1px solid #3961ab;
+}
+body #uncanny_group_signup_registration_form .buttons {
+  display: grid;
+  grid-gap: 0.5rem 2rem;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 2rem 0 2rem 1.5rem;
+}
+body #uncanny_group_signup_registration_form .buttons input {
+  background: #ffffff;
+  border: 1px solid #dda4cb;
+  color: #dda4cb;
+  font-weight: 500;
+  font-size: 0.579rem;
+  grid-column: 2;
+  letter-spacing: 0.3rem;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  width: 100%;
+}
+body #uncanny_group_signup_registration_form .buttons input:hover {
+  background: #dda4cb;
+  color: #ffffff;
+  cursor: pointer;
+  transition: 0.25s all;
+}
+body #uncanny_group_signup_registration_form .form-fields {
+  display: grid;
+  grid-gap: 0.5rem 2rem;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  margin-left: 1.5rem;
+}
+body #uncanny_group_signup_registration_form .form-fields input {
+  color: #3961ab;
+  font-size: 0.694rem;
+  width: 100%;
+}
+body
+  #uncanny_group_signup_registration_form
+  .form-fields
+  input[type='checkbox'] {
+  width: auto;
+}
+body #uncanny_group_signup_registration_form .form-fields p {
+  color: #3961ab;
+  font-size: 0.702rem;
+  margin-top: 1rem;
+}
+body #uncanny_group_signup_registration_form .form-fields .full-width {
+  margin-top: 1rem;
+}
+body #uncanny_group_signup_registration_form .form-fields .full-width label,
+body #uncanny_group_signup_registration_form .form-fields label a {
+  font-size: 0.79rem;
+}
+body #uncanny_group_signup_registration_form .form-fields label a:hover {
+  color: #a2135e;
+  text-decoration: underline;
+}
+body #uncanny_group_signup_registration_form .form-fields input:focus {
+  outline: 1px solid #00557c;
+}
+body #uncanny_group_signup_registration_form .form-fields label {
+  color: #3961ab;
+  font-size: 0.579rem;
+  text-transform: uppercase;
+}
+body #uncanny_group_signup_registration_form .form-fields .full-width label {
+  text-transform: none;
+}
+body #uncanny_group_signup_registration_form .form-fields .full-width {
+  grid-row-start: 7;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+body #uncanny-pro-toolkit-login-form input[type='text'],
+body #uncanny-pro-toolkit-login-form input[type='password'] {
+  background: white;
+  border: 1px solid #3961ab;
+  color: #3961ab;
+  font-size: 0.694rem;
+  width: 100%;
+}
+body #uncanny-pro-toolkit-login-form input[type='text']:focus,
+body #uncanny-pro-toolkit-login-form input[type='password']:focus {
+  outline: 1px solid #00557c;
+}
+body #uncanny-pro-toolkit-login-form input[type='submit'] {
+  background: #ffffff;
+  border: 1px solid #dda4cb;
+  color: #dda4cb;
+  font-weight: 500;
+  font-size: 0.579rem;
+  grid-column: 2;
+  letter-spacing: 0.3rem;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  width: 100%;
+}
+body #uncanny-pro-toolkit-login-form input[type='submit']:hover {
+  background: #dda4cb;
+  color: #ffffff;
+  cursor: pointer;
+  transition: 0.25s all;
+}
+body #uncanny-pro-toolkit-login-form label {
+  color: #3961ab;
+  font-size: 0.579rem;
+  text-transform: uppercase;
+}
+body #uncanny-pro-toolkit-login-form .login-remember input {
+  margin-right: 0.5rem;
+}
+body .course-info-top {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  margin-bottom: 4rem;
+}
+body .course-info-bottom {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+body .course-info form {
+  grid-column-start: 5;
+  grid-column-end: 13;
+  grid-row: 2;
+  width: 100%;
+}
+body .course-info .description {
+  font-size: 1rem;
+  line-height: 1.2;
+  margin-left: 1.5rem;
+  grid-column-start: 5;
+  grid-column-end: 13;
+}
+body .course-info .wp-post-image {
+  grid-column-start: 1;
+  grid-column-end: 5;
+}
+body .elementor-login button[type='submit'] {
+  letter-spacing: 6px;
+  font-size: 0.65rem;
+  font-weight: bold;
+  padding-bottom: 0.4rem;
+  padding-top: 0.4rem;
+  width: 100%;
+}
+body .elementor-login .elementor-lost-password,
+body .elementor-login .elementor-remember-me {
+  font-size: 0.7em;
+}
+@media (min-width: 1024px) {
+  body .elementor-login button[type='submit'] {
+    max-width: 20rem;
+  }
+}
+body .extra-info > h2,
+body .extra-info > p {
+  display: none;
+}
+body .form-submit .button-border {
+  background: #efefef;
+  color: #444;
+  margin-right: 1rem;
+}
+body .form-submit .button-border:hover {
+  background: #444;
+  color: white;
+}
+body .ld-course-list-items .ld_course_grid .btn-primary:hover,
+.ld-course-list-items .ld_course_grid .btn-primary:focus,
+.ld-course-list-items .ld_course_grid .btn-primary:active,
+.ld-course-list-items .ld_course_grid .btn-primary.active,
+.ld-course-list-items .ld_course_grid .open .dropdown-toggle.btn-primary {
+  background-color: #c44186;
+  border-color: #c44186;
+}
+body .ld-course-list-items .ld_course_grid .btn-primary {
+  background-color: #dda4cb;
+  border-color: #dda4cb;
+  margin-top: 1rem;
+}
+body .ld-course-list-items .ld_course_grid .thumbnail.course .ribbon.enrolled {
+  background-color: #dda4cb;
+}
+body
+  .ld-course-list-items
+  .ld_course_grid
+  .thumbnail.course
+  .ribbon.enrolled::before {
+  border-top: 4px solid #cd91ba;
+  border-right: 4px solid #cd91ba;
+}
+body .learndash-wrapper .ld-breadcrumbs {
+  margin: 0 auto;
+  max-width: 1600px;
+}
+/* body .learndash-wrapper .ld-item-list {
+  display: none;
+} */
+body
+  .learndash-wrapper
+  .ld-profile-summary
+  .ld-profile-card
+  .ld-profile-edit-link {
+  display: inline-block;
+}
+body
+  .learndash-wrapper
+  .ld-profile-summary
+  .ld-profile-card
+  .ld-profile-edit-link:first-child {
+  margin-right: 1.5rem;
+}
+body
+  .learndash-wrapper
+  .ld-profile-summary
+  .ld-profile-card
+  .ld-profile-heading {
+  margin: 1.5rem 0;
+}
+body .learndash-wrapper .ld-content-actions {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+body .learndash-wrapper .ld-content-action input[type='submit'] {
+  background-color: #dda4cb !important;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0px;
+  padding: 0.5rem 1rem;
+  text-transform: initial;
+}
+body .learndash-wrapper .ld-tabs .ld-tabs-navigation {
+  margin: 0 auto;
+  max-width: 1600px;
+}
+body .learndash-wrapper .ld-tabs .ld-tabs-navigation .ld-icon {
+  display: none;
+}
+.type-sfwd-courses .elementor-widget-ld-lesson-list .sfwd-lessons h3 {
+  font-size: 1.125rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+body .learndash-wrapper #ld-profile {
+  margin-bottom: 4rem;
+}
+body .learndash-wrapper #ld-profile .ld-item-list-items {
+  display: none;
+}
+body .learndash-wrapper #ld-profile .ld-course-list {
+  display: none;
+}
+body
+  .learndash-wrapper
+  .ld-tabs
+  .ld-tabs-content
+  .ld-tab-content:not(:first-child) {
+  margin: 0 auto;
+  max-width: 1600px;
+}
+body .register-form h1 {
+  color: #2f2940;
+  font-size: 2.074rem;
+  font-weight: 400;
+  margin-bottom: 1.875rem;
+}
+body .section-name {
+  color: #dda4cb;
+  font-size: 0.694rem;
+  letter-spacing: 0.5rem;
+  font-weight: 500;
+  margin-bottom: 1.875rem;
+  text-transform: uppercase;
+}
+body .sfwd-courses .ld-lesson-list {
+  display: none;
+}
+#content .nopad.elementor-column > .elementor-element-populated {
+  padding: 0;
+}
+#content .padL.elementor-column > .elementor-element-populated {
+  padding: 0 1rem;
+  padding-left: 4%;
+}
+#content .padR.elementor-column > .elementor-element-populated {
+  padding: 0 1rem;
+  padding-right: 4%;
+}
+#nav-wrapper .elementor-nav-menu--dropdown .menu-link {
+  letter-spacing: 0;
+  margin: 0 1rem 2rem;
+  word-spacing: 0;
+}
+#nav-wrapper .elementor-nav-menu--main .elementor-item {
+  padding: 5px;
+  margin: 0 0 0 2rem;
+}
+.ast-plain-container.ast-no-sidebar #primary {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+.elementor-58
+  .elementor-element.elementor-element-66e6626
+  .elementor-field-group
+  .elementor-field:not(.elementor-select-wrapper) {
+  background-color: rgba(255, 255, 255, 0.78);
+}
+.elementor-login__logged-in-message {
+  background: #fff;
+  border-radius: 20px;
+  color: #2f2940;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  width: fit-content;
+}
+.elementor-field-type-checkbox.elementor-remember-me label {
+  color: white;
+}
+.elementor-kit-27 input:not([type='button']):not([type='submit']),
+.elementor-kit-27 textarea,
+.elementor-kit-27 .elementor-field-textual {
+  color: #2f2940;
+}
+.footer-link:hover a {
+  color: white;
+}
+body .learndash-wrapper #learndash_mark_complete_button:disabled,
+body .learndash-wrapper .learndash_mark_complete_button:disabled {
+  background: #dda4cb !important;
+  filter: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  opacity: 0.3;
+  letter-spacing: 1px !important;
+  text-transform: initial !important;
+  width: auto !important;
+}
+body .learndash-wrapper .ld-content-actions .ld-content-action.ld-empty {
+  display: none;
+}
+body .site-content .post-navigation {
+  display: none !important;
+}
+.site-content .ast-container {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: unset;
+}
+.uncanny_group_organization_org_details {
+  display: none;
+}
+.ur-frontend-form {
+  border: none;
+}
+.user-registration input:not([type='button']):not([type='submit']) {
+  background-color: white;
+}
+.user-registration input[type='email'],
+.user-registration input[type='password'],
+.user-registration input[type='text'] {
+  border: 1px solid #3961ab;
+}
+.user-registration.ur-frontend-form .ur-form-row .ur-form-grid {
+  justify-content: space-between;
+  padding: 0;
+}
+.user-registration .ur-field-item {
+  width: 48%;
+}
+@media (max-width: 767px) {
+  .user-registration .ur-field-item {
+    width: 98%;
+  }
+}
+.user-registration .ur-form-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+.user-registration .ur-label {
+  color: #3961ab;
+}
+.user-registration .ur-recaptcha-node {
+  margin: 2rem 0;
+}
+@media (max-width: 1023px) {
+  #nav-wrapper .elementor-nav-menu {
+    padding: 3rem 0;
+  }
+}
+@media (min-width: 1024px) {
+  form .elementor-field-group .elementor-field-textual {
+    max-width: 20rem;
+  }
+}

@@ -1,0 +1,92 @@
+// https://www.sanidad.gob.es/en/profesionales/formacion/EspecialistasExtracomunitarios/Docs/2020EspecialidadesRecoEspanaV2.pdf
+// https://isanidad.com/207667/todas-las-plazas-mir-2022-por-especialidades-y-hospitales/
+// https://www.universidadviu.com/es/actualidad/nuestros-expertos/conoce-las-especialidades-de-enfermeria
+// https://www.farmaceuticos.com/estudiantes/fir/
+{
+  "Medicina": [
+    "Alergología",
+    "Análisis Clínicos",
+    "Anatomía Patológica",
+    "Anestesiología y Reanimación",
+    "Angiología y Cirugía Vascular",
+    "Aparato Digestivo",
+    "Bioquímica Clínica",
+    "Cardiología",
+    "Cirugía Cardiovascular",
+    "Cirugía General y del Aparato Digestivo",
+    "Cirugía Oral y Maxilofacial",
+    "Cirugía Ortopédica y Traumatología",
+    "Cirugía Pediátrica",
+    "Cirugía Plástica, Estética y Reparadora",
+    "Cirugía Torácica",
+    "Dermatología Médico-Quirúrgica",
+    "Endocrinología y Nutrición",
+    "Farmacología Clínica",
+    "Geriatría",
+    "Hematología y Hemoterapia",
+    "Inmunología",
+    "Medicina de Urgencias y Emergencias",
+    "Medicina del Trabajo",
+    "Medicina Legal y Forense",
+    "Medicina Familiar y Comunitaria",
+    "Medicina Física y Rehabilitación",
+    "Medicina Intensiva",
+    "Medicina Interna",
+    "Medicina Nuclear",
+    "Medicina Preventiva y Salud Pública",
+    "Microbiología y Parasitología",
+    "Nefrología",
+    "Neumología",
+    "Neurocirugía",
+    "Neurofisiología Clínica",
+    "Neurología",
+    "Obstetricia y Ginecología",
+    "Oftalmología",
+    "Oncología Médica",
+    "Oncología Radioterápica",
+    "Otorrinolaringología",
+    "Pediatría y Áreas Específicas",
+    "Psiquiatría",
+    "Radiodiagnóstico",
+    "Reumatología",
+    "Urología"
+  ],
+  "Enfermería": [
+    "Enfermería de Salud Mental",
+    "Enfermería del trabajo",
+    "Enfermería en Cuidados Médico-Quirúrgicos",
+    "Enfermería Familiar y Comunitaria",
+    "Enfermería Geriátrica",
+    "Enfermería Obstétrico-Ginecológica (matrona)",
+    "Enfermería Pediátrica"
+  ],
+  "Auxiliar de enfermería": [
+    "Enfermería de Salud Mental",
+    "Enfermería del trabajo",
+    "Enfermería en Cuidados Médico-Quirúrgicos",
+    "Enfermería Familiar y Comunitaria",
+    "Enfermería Geriátrica",
+    "Enfermería Obstétrico-Ginecológica (matrona)",
+    "Enfermería Pediátrica"
+  ],
+  "Farmacia": [
+    "Análisis Clínicos",
+    "Bioquímica Clínica",
+    "Farmacia Galenica e Industrial",
+    "Farmacia Hospitalaria",
+    "Farmacia Comunitaria",
+    "Micro y Parasitología",
+    "Inmunología",
+    "Radiofarmacia"
+  ],
+  "Auxiliar de farmacia": [
+    "Análisis Clínicos",
+    "Bioquímica Clínica",
+    "Farmacia Galenica e Industrial",
+    "Farmacia Hospitalaria",
+    "Farmacia Comunitaria",
+    "Micro y Parasitología",
+    "Inmunología",
+    "Radiofarmacia"
+  ]
+}
