@@ -125,9 +125,10 @@ $post = get_post($id); ?>
         </div>
         <div class="form-field">
           <label for="uncanny_group_signup_user_phone">Teléfono</label><br />
-          <input name="uncanny_group_signup_user_phone" id="uncanny_group_signup_user_phone" placeholder="Teléfono" value="<?php if (isset($_POST['uncanny_group_signup_user_phone'])) {
-              echo sanitize_text_field($_POST['uncanny_group_signup_user_phone']);
-          } ?>" class="required" type="tel" required />
+          <input name="uncanny_group_signup_user_phone" id="uncanny_group_signup_user_phone" placeholder="Teléfono"
+            value="<?php if (isset($_POST['uncanny_group_signup_user_phone'])) {
+                echo sanitize_text_field($_POST['uncanny_group_signup_user_phone']);
+            } ?>" class="required" type="tel" required />
         </div>
         <div class="form-field">
           <label for="uncanny_group_signup_user_dni">DNI/NIE</label><br />
@@ -201,7 +202,8 @@ $post = get_post($id); ?>
             </option>
             <option name="AE - Enfermería familiar y comunitaria">Enfermería familiar y comunitaria</option>
             <option name="AE - Enfermería geriátrica">Enfermería geriátrica</option>
-            <option name="AE - Enfermería obstétrico-ginecológica (matrona)">Enfermería obstétrico-ginecológica (matrona)
+            <option name="AE - Enfermería obstétrico-ginecológica (matrona)">Enfermería obstétrico-ginecológica
+              (matrona)
             </option>
             <option name="AE - Enfermería pediátrica">Enfermería pediátrica</option>
             <option name="">-- FARMACIA --</option>
@@ -226,7 +228,8 @@ $post = get_post($id); ?>
         </div>
         <div class="custom-select form-field nooverflow">
           <label for="uncanny_group_signup_user_student">¿Eres estudiante?</label><br />
-          <select name="uncanny_group_signup_user_student" id="uncanny_group_signup_user_student" class="required" placeholder="¿Eres estudiante?" required>
+          <select name="uncanny_group_signup_user_student" id="uncanny_group_signup_user_student" class="required"
+            placeholder="¿Eres estudiante?" required>
             <option name="">¿Eres estudiante?</option>
             <option name="Sí">Sí</option>
             <option name="No">No</option>
@@ -313,8 +316,14 @@ $post = get_post($id); ?>
             type="password" required />
         </div>
         <div class="form-field full-width">
-          <input id="uncanny_group_signup_user_legal" type="checkbox" name="uncanny_group_signup_user_legal"> <label for="uncanny_group_signup_user_legal">He leído y acepto el <a href="<?= site_url() ?>/aviso-legal" target="_blank">aviso legal</a> y la <a href="<?= site_url() ?>/politica-privacidad" target="_blank">política de privacidad</a></label>
-          <p class="hideToStudents">(1) Si su número de colegiado sólo tiene 4 cifras, deberá añadir un 0 al principio</p>
+          <input id="uncanny_group_signup_user_legal" type="checkbox" name="uncanny_group_signup_user_legal"> <label
+            for="uncanny_group_signup_user_legal">He leído y acepto el <a
+              href="<?= site_url() ?>/terminos-uso"
+              target="_blank">aviso legal</a> y la <a
+              href="<?= site_url() ?>/politica-privacidad"
+              target="_blank">política de privacidad</a></label>
+          <p class="hideToStudents">(1) Si su número de colegiado sólo tiene 4 cifras, deberá añadir un 0 al principio
+          </p>
         </div>
         <input name="uncanny_group_signup_user_createddate" id="uncanny_group_signup_user_createddate"
           value="<?= date("Y-m-d H:i:s"); ?>"

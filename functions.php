@@ -128,10 +128,11 @@ function remove_admin_bar()
 function custom_login_redirect()
 {
     $roles = (array) wp_get_current_user()->roles;
-    if (! in_array('administrator', $roles)) {
+    if(in_array('group_leader', $roles)) {
+        return site_url('/gestion-grupo');
+    } else if (! in_array('administrator', $roles)) {
         return site_url('/usuario');
     }
-    return;
 }
 
 add_filter('login_redirect', 'custom_login_redirect');
