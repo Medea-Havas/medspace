@@ -128,18 +128,129 @@ function remove_admin_bar()
 function custom_login_redirect()
 {
     $roles = (array) wp_get_current_user()->roles;
-    if(in_array('group_leader', $roles)) {
+    if (in_array('group_leader', $roles)) {
         return site_url('/gestion-grupo');
-    } else if (! in_array('administrator', $roles)) {
+    } elseif (! in_array('administrator', $roles)) {
         return site_url('/usuario');
     }
 }
 
 add_filter('login_redirect', 'custom_login_redirect');
 
-function user_last_login( $user_login, $user ) {
-    update_user_meta( $user->ID, 'lastaccessdate', date('Y-m-d H:i:s') );
-    update_user_meta( $user->ID, 'lastaccessip', $_SERVER['REMOTE_ADDR'] );
+function user_last_login($user_login, $user)
+{
+    update_user_meta($user->ID, 'lastaccessdate', date('Y-m-d H:i:s'));
+    update_user_meta($user->ID, 'lastaccessip', $_SERVER['REMOTE_ADDR']);
 }
-add_action( 'wp_login', 'user_last_login', 10, 2 );
+add_action('wp_login', 'user_last_login', 10, 2);
+
+// Date shortcode
+function wpb_date_today($atts)
+{
+    extract(shortcode_atts(array(
+            'format' => ''
+        ), $atts));
+
+    $months = array("enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre");
+    $month = $months[date('n')-1];
+    $date = date('j') . ' de ' . $month . ' del ' . date('Y');
+
+    return $date;
+}
+add_shortcode('date-today', 'wpb_date_today');
+
+// QR Code shortcode
+function adri_qr_code($atts)
+{
+    // Attributes
+    $atts = shortcode_atts(
+        [
+        'domain' => '',
+        'expnum' => '',
+        'certnum' => '',
+        'city' => '',
+        'hours' => '',
+        'tutor' => '',
+        'creds' => '',
+        ],
+        $atts,
+        'img'
+    );
+
+    $courseID = isset($_GET['course_id']) ? $_GET['course_id'] : '';
+    $previewID = isset($_GET['preview_id']) ? $_GET['preview_id'] : '';
+
+    $currentUser = wp_get_current_user();
+    $userData = new stdClass();
+
+    $userData->userId = $currentUser->ID;
+    $userData->certificateId = get_post()->ID;
+    $userData->certificateDate = date('d-m-Y');
+    $userData->expnum = $atts['expnum'];
+    $userData->certnum = $atts['certnum'];
+    $userData->city = $atts['city'];
+    $userData->hours = $atts['hours'];
+    $userData->tutor = $atts['tutor'];
+    $userData->creds = $atts['creds'];
+
+    if ($courseID != '') {
+        $userData->courseId = $courseID;
+    } elseif ($previewID != '') {
+        $userData->courseId = $previewID;
+    }
+
+    $userDataToJson = json_encode($userData, JSON_UNESCAPED_UNICODE);
+    $encodedData = getEncodedUser($userDataToJson);
+
+    $domain = site_url();
+    if ($atts['domain'] != '') {
+        $domain = $atts['domain'];
+    }
+    if ($encodedData != '') {
+        $return = '<img src="https://chart.googleapis.com/chart?cht=qr&chs=100x100&chld=L&chl=' . $domain . '?data=' . $encodedData . '">';
+    // $return = '<p style="font-size:8px">CourseId: ' . $courseID . ' - ' . $encodedData . '</p><img src="https://chart.googleapis.com/chart?cht=qr&chs=100x100&chld=L&chl=' . $domain . '?data=' . $encodedData . '">';
+    // $return = '<img src="https://chart.googleapis.com/chart?cht=qr&chs=120x120&chld=L&chl=' . $domain . '?data=' . $encodedData . '">';
+    } else {
+        $return = '<p>Error, no encoded data.</p>';
+    }
+    return $return;
+}
+add_shortcode('qr-code', 'adri_qr_code');
+
+function getEncodedUser($userData)
+{
+    $res = '';
+    // Store a string into the variable which
+    // need to be Encrypted
+    $simple_string = $userData;
+
+    // Display the original string
+    $res .= 'Original string: ' . $simple_string . '\n';
+
+    // Store the cipher method
+    $ciphering = "AES-128-CTR";
+
+    // Use OpenSSl Encryption method
+    $options = 0;
+
+    // Non-NULL Initialization Vector for encryption
+    $encryption_iv = '1234567891011121';
+
+    // Store the encryption key
+    $encryption_key = "medspace22";
+
+    // Use openssl_encrypt() function to encrypt the data
+    $encryption = openssl_encrypt(
+        $simple_string,
+        $ciphering,
+        $encryption_key,
+        $options,
+        $encryption_iv
+    );
+
+    // return $res;
+    return $encryption;
+}
+
+
 ?>
