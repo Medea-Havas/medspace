@@ -94,9 +94,6 @@ function extra_profile_fields($user)
     class="regular-text" /><br /><br />
 <?php }
 
-add_action('personal_options_update', 'extra_profile_fields_update');
-add_action('edit_user_profile_update', 'extra_profile_fields_update');
-
 function extra_profile_fields_update($user_id)
 {
     if (!current_user_can('edit_user', $user_id)) {
@@ -110,32 +107,42 @@ function extra_profile_fields_update($user_id)
     update_user_meta($user_id, 'province', ucwords(strtolower($_POST['province'])));
     update_user_meta($user_id, 'colnum', ucwords(strtolower($_POST['colnum'])));
 }
+add_action('personal_options_update', 'extra_profile_fields_update');
+add_action('edit_user_profile_update', 'extra_profile_fields_update');
 
 // Remove admin bar
-add_action('after_setup_theme', 'remove_admin_bar');
+
 function remove_admin_bar()
 {
     if (!current_user_can('administrator') && !is_admin()) {
         show_admin_bar(false);
     }
 }
+add_action('after_setup_theme', 'remove_admin_bar');
 
 // Upload file sizes
 @ini_set('upload_max_size', '256M');
 @ini_set('post_max_size', '256M');
 @ini_set('max_execution_time', '300');
 
-function custom_login_redirect()
+// User redirect
+function custom_login_redirect($redirect_to, $request, $user)
 {
-    $roles = (array) wp_get_current_user()->roles;
-    if (in_array('group_leader', $roles)) {
-        return site_url('/gestion-grupo');
-    } elseif (! in_array('administrator', $roles)) {
+    if (isset($user->roles) && is_array($user->roles)) {
+        //check for admins
+        if (in_array('administrator', $user->roles)) {
+            // redirect them to the default place
+            return site_url('/wp-admin');
+        }
+        if (in_array('group_leader', $user->roles)) {
+            return site_url('/gestion-grupo');
+        }
         return site_url('/usuario');
+    } else {
+        return $redirect_to;
     }
 }
-
-add_filter('login_redirect', 'custom_login_redirect');
+add_filter('login_redirect', 'custom_login_redirect', 10, 3);
 
 function user_last_login($user_login, $user)
 {
@@ -209,7 +216,6 @@ function adri_qr_code($atts)
     if ($encodedData != '') {
         $return = '<img src="https://chart.googleapis.com/chart?cht=qr&chs=100x100&chld=L&chl=' . $domain . '?data=' . $encodedData . '">';
     // $return = '<p style="font-size:8px">CourseId: ' . $courseID . ' - ' . $encodedData . '</p><img src="https://chart.googleapis.com/chart?cht=qr&chs=100x100&chld=L&chl=' . $domain . '?data=' . $encodedData . '">';
-    // $return = '<img src="https://chart.googleapis.com/chart?cht=qr&chs=120x120&chld=L&chl=' . $domain . '?data=' . $encodedData . '">';
     } else {
         $return = '<p>Error, no encoded data.</p>';
     }
