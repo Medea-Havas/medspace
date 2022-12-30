@@ -138,9 +138,8 @@ function custom_login_redirect($redirect_to, $request, $user)
             return site_url('/gestion-grupo');
         }
         return site_url('/usuario');
-    } else {
-        return $redirect_to;
     }
+    return site_url();
 }
 add_filter('login_redirect', 'custom_login_redirect', 10, 3);
 
@@ -150,6 +149,18 @@ function user_last_login($user_login, $user)
     update_user_meta($user->ID, 'lastaccessip', $_SERVER['REMOTE_ADDR']);
 }
 add_action('wp_login', 'user_last_login', 10, 2);
+
+// Different menu for Group Leaders
+function my_wp_nav_menu_args($args = '')
+{
+    $user = wp_get_current_user();
+    $args['menu'] = 4;
+    if (isset($user->roles) && is_array($user->roles) && in_array('group_leader', $user->roles)) {
+        $args['menu'] = 16;
+    }
+    return $args;
+}
+add_filter('wp_nav_menu_args', 'my_wp_nav_menu_args');
 
 // Date shortcode
 function wpb_date_today($atts)
@@ -258,5 +269,91 @@ function getEncodedUser($userData)
     return $encryption;
 }
 
+// Learndash Next Lesson Link shortcode
+function ld_next_lesson_link($course_id = null)
+{
+    global $post;
+    $user = _wp_get_current_user();
+
+    if (is_null($course_id)) {
+        $course_id = learndash_get_course_id($post);
+    }
+
+    if (!$course_id || !isset($user->ID)) {
+        // User Not Logged In OR No Course Identified
+        return false;
+    }
+
+    $lessons = learndash_get_lesson_list($course_id);
+    // Defaults to first lesson
+    $lesson_id = $lessons[0];
+
+    if (!$lessons) {
+        // No Lesson
+        return false;
+    }
+
+    // If user has progress, stablishes next lesson
+    $user_course_progress = get_user_meta($user->ID, '_sfwd-course_progress', true);
+
+    if (isset($user_course_progress[$course_id])) {
+        $course_progress = $user_course_progress[$course_id];
+        $completed = isset($course_progress['completed']) ? $course_progress['completed'] : 0;
+        $total = isset($course_progress['total']) ? $course_progress['total'] : 0;
+        $lessons = array_keys($course_progress['lessons']);
+
+        if ($total) {
+            $lesson_id = $completed < $total ? $lessons[$completed] : $lessons[0];
+        }
+    }
+
+    if (!$lesson_id) {
+        // No Lesson ID
+        return false;
+    }
+
+    if ('sfwd-lessons' != get_post_type($lesson_id)) {
+        // ID not for a Learndash Lesson
+        return false;
+    }
+
+    $link = get_post_permalink($lesson_id);
+    return $link;
+}
+
+function shortcode_ld_next_lesson_link($atts, $content = 'Next Lesson')
+{
+    extract(shortcode_atts(array(
+        'course_id' => null,
+        'class' => 'learndash-next-lesson'
+    ), $atts));
+    $url = ld_next_lesson_link($course_id);
+    if ($url) {
+        return '' . $url . '';
+    }
+    return false;
+}
+add_shortcode('ld_next_lesson_link', 'shortcode_ld_next_lesson_link');
+
+// User header shortcode
+function user_header_shortcode($atts)
+{
+    extract(shortcode_atts(array(
+            'format' => ''
+        ), $atts));
+
+    $user = _wp_get_current_user();
+
+    return '
+        <div class="header-user">
+            <a href="' . site_url() . '/usuario" class="user">
+                <p>' . $user->first_name . '</p>
+                <img src="' . get_avatar_url($user->id) . '">
+            </a>
+            <a class="logout" href="' . site_url() . '/wp-login.php?action=logout&redirect_to=' . site_url() . '">Salir</a>
+        </div>
+    ';
+}
+add_shortcode('user_header', 'user_header_shortcode');
 
 ?>

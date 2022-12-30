@@ -751,3 +751,34 @@ body .learndash-wrapper .ld-alert-success .ld-alert-icon {
 #certificates .info-block-wrapper .lessons {
   display: block;
 }
+.header-user {
+  display: inline-block;
+}
+.header-user .user {
+  align-items: center;
+  display: flex;
+}
+.header-user .user:hover p {
+  color: #c44186;
+}
+.header-user .user:hover img {
+  border: 1px solid #c44186;
+}
+.header-user .user p {
+  color: white;
+  margin: 0;
+}
+.header-user .user img {
+  border-radius: 100%;
+  margin-left: 0.5rem;
+  position: relative;
+  width: 2rem;
+}
+.header-user .logout {
+  color: white;
+  font-size: 0.5rem;
+  text-transform: uppercase;
+}
+.header-user .logout:hover {
+  color: #c44186;
+}
