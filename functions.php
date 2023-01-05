@@ -344,15 +344,18 @@ function user_header_shortcode($atts)
 
     $user = _wp_get_current_user();
 
-    return '
-        <div class="header-user">
-            <a href="' . site_url() . '/usuario" class="user">
-                <p>' . $user->first_name . '</p>
-                <img src="' . get_avatar_url($user->id) . '">
-            </a>
-            <a class="logout" href="' . site_url() . '/wp-login.php?action=logout&redirect_to=' . site_url() . '">Salir</a>
-        </div>
-    ';
+    if ($user->ID) {
+        return '
+            <div class="header-user">
+                <a href="' . site_url() . '/usuario" class="user">
+                    <p>' . $user->first_name . '</p>
+                    <img src="' . get_avatar_url($user->id) . '">
+                </a>
+                <a class="logout" href="' . site_url() . '/wp-login.php?action=logout&redirect_to=' . site_url() . '">Salir</a>
+            </div>
+        ';
+    }
+    return '';
 }
 add_shortcode('user_header', 'user_header_shortcode');
 
